@@ -18,6 +18,7 @@ public class OrderPage {
     private By adressField = By.cssSelector("input[placeholder='* Адрес: куда привезти заказ']");
     //    поле метро
     private By metroField = By.cssSelector("input[placeholder='* Станция метро']");
+    private By selectedMetro = By.className("select-search__select");
     //    поле телефон
     private By phoneField = By.cssSelector("input[placeholder='* Телефон: на него позвонит курьер']");
     //    кнопка Далее
@@ -27,33 +28,37 @@ public class OrderPage {
     public OrderPage(WebDriver driver) {
         this.driver = driver;
     }
-    //вводим имя
-    public void setName(String name) {
-        driver.findElement(nameField).sendKeys(name);
+// получаем поле имени для шага
+    public By getNameField() {
+        return nameField;
     }
-    //вводим фамилию
-    public void setLastName(String lastName) {
-        driver.findElement(lastnameField).sendKeys(lastName);
+// получаем поле фамилии для шага
+    public By getLastnameField() {
+        return lastnameField;
     }
-    //вводим адрес
-    public void setAdress(String adress) {
-        driver.findElement(adressField).sendKeys(adress);
+// получаем поле адреса для шага
+    public By getAdressField() {
+        return adressField;
     }
-    //выбираем метро
-    public void setMetro(String metro) {
-        driver.findElement(metroField).sendKeys(metro);
-        driver.findElement(By.className("select-search__select")).click();
+// получаем поле метро для шага
+    public By getMetroField() {
+        return metroField;
     }
-    //вводим телефон
-    public void setPhoneField(String phone) {
-        driver.findElement(phoneField).sendKeys(phone);
+// получаем выбранное метро для шага
+    public By getSelectedMetroField() {
+        return selectedMetro;
     }
-    //нажимаем кнопку далее
+// получаем поле телефон для шага
+    public By getPhoneField() {
+        return phoneField;
+    }
+
+//нажимаем кнопку далее
     public void pushNextButton() {
         driver.findElement(nextButton).click();
     }
 
-    // Для теста кнопки Заказать(нижняя)
+// Для теста кнопки Заказать(нижняя)
 //    проверяем видимость кнопки Далее после нажатия кнопки Заказать(нижняя) на гл.странице
     public boolean isNextButtonVisible() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));

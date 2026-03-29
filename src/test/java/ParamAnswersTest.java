@@ -30,12 +30,10 @@ public class ParamAnswersTest extends BaseUITest {
 
     @Test
     public void answersTest() {
-//  открываем сайт
-        mainPage.openSite();
-//  закрываем куки
-        mainPage.closeCookeis();
+//  открываем сайт и нажимаем куки, используя шаги
+        steps.startOfWork();
 //  скролл до кнопки 1-го вопроса
-        mainPage.scrollToQuestionButton_1();
+        mainPage.scrollToQuestionButton();
 //  метод нажатия кнопок
         mainPage.clickQuestionButton(number);
 

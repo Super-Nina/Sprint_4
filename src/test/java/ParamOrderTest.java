@@ -37,24 +37,17 @@ public class ParamOrderTest extends BaseUITest{
     }
  @Test
  public void makeOrderTest(){
-//  открываем сайт
-     mainPage.openSite();
-//  закрываем куки
-     mainPage.closeCookeis();
+//  открываем сайт и нажимаем куки, используя шаги
+     steps.startOfWork();
  // нажимаем верхную кнопку заказа
-     mainPage.clickOrderButton_Up();
+     mainPage.clickOrderButtonUp();
 
-//  заполняем поля данными из параметров
-     orderPage.setName(name);
-     orderPage.setLastName(lastname);
-     orderPage.setAdress(adress);
-     orderPage.setMetro(metro);
-     orderPage.setPhoneField(phone);
+//  заполняем поля на OrderPage данными из параметров, использую шаги
+     steps.fillTheFieldsOrderPage(name, lastname, adress,metro,phone);
+
      orderPage.pushNextButton();
-     aboutRentPage.setWhenField(date);
-     aboutRentPage.setRentPeriod(period);
-     aboutRentPage.setColour(colour);
-     aboutRentPage.setComment(comment);
+//  заполняем поля на AboutRentPage данными из параметров, использую шаги
+     steps.fillTheFieldsAboutRentPage(date, period, colour, comment);
 
 //  нажимаем кнопку заказать под формой
      aboutRentPage.pushOrderButton();

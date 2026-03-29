@@ -7,12 +7,14 @@ import org.junit.After;
 import org.junit.Before;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import pages.Steps;
 
 public class BaseUITest {
     WebDriver driver;
     MainPage mainPage;
     OrderPage orderPage;
     AboutRentPage aboutRentPage;
+    Steps steps;
 
     @Before
 //    возможность переключать браузеры
@@ -32,6 +34,7 @@ public class BaseUITest {
         mainPage = new MainPage(driver);
         orderPage = new OrderPage(driver);
         aboutRentPage = new AboutRentPage(driver);
+        steps = new Steps(driver, mainPage, orderPage, aboutRentPage);
     }
 
     public void startBrowserFireFox() {
@@ -41,6 +44,7 @@ public class BaseUITest {
         mainPage = new MainPage(driver);
         orderPage = new OrderPage(driver);
         aboutRentPage = new AboutRentPage(driver);
+        steps = new Steps(driver, mainPage, orderPage, aboutRentPage);
     }
 
     //закрываем браузер
