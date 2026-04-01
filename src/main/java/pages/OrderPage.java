@@ -28,31 +28,28 @@ public class OrderPage {
     public OrderPage(WebDriver driver) {
         this.driver = driver;
     }
-// получаем поле имени для шага
-    public By getNameField() {
-        return nameField;
-    }
-// получаем поле фамилии для шага
-    public By getLastnameField() {
-        return lastnameField;
-    }
-// получаем поле адреса для шага
-    public By getAdressField() {
-        return adressField;
-    }
-// получаем поле метро для шага
-    public By getMetroField() {
-        return metroField;
-    }
-// получаем выбранное метро для шага
-    public By getSelectedMetroField() {
-        return selectedMetro;
-    }
-// получаем поле телефон для шага
-    public By getPhoneField() {
-        return phoneField;
-    }
 
+//вводим имя
+    public void setName(String name) {
+        driver.findElement(nameField).sendKeys(name);
+    }
+//вводим фамилию
+    public void setLastName(String lastName) {
+        driver.findElement(lastnameField).sendKeys(lastName);
+    }
+//вводим адрес
+    public void setAdress(String adress) {
+        driver.findElement(adressField).sendKeys(adress);
+    }
+//выбираем метро
+    public void setMetro(String metro) {
+        driver.findElement(metroField).sendKeys(metro);
+        driver.findElement(selectedMetro).click();
+    }
+//вводим телефон
+    public void setPhone(String phone) {
+        driver.findElement(phoneField).sendKeys(phone);
+    }
 //нажимаем кнопку далее
     public void pushNextButton() {
         driver.findElement(nextButton).click();

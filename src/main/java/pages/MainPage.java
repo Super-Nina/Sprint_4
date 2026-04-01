@@ -25,13 +25,11 @@ public class MainPage {
     private By questionButtonOrderToday = By.id("accordion__heading-3");
     private By questionButtonExtendRent = By.id("accordion__heading-4");
     private By questionButtonCharger = By.id("accordion__heading-5");
-
     private By questionButtonOrderCancel = By.id("accordion__heading-6");
     private By questionButtonDeliveryTerritory = By.id("accordion__heading-7");
 //    кнопки с ответами
     private By answerButtonRentPrice = By.id("accordion__panel-0");
     private By answerButtonFewSkates = By.id("accordion__panel-1");
-
     private By answerButtonRentTime = By.id("accordion__panel-2");
     private By answerButtonOrderToday = By.id("accordion__panel-3");
     private By answerButtonExtendRent = By.id("accordion__panel-4");
@@ -67,13 +65,14 @@ public class MainPage {
     public MainPage(WebDriver driver) {
         this.driver = driver;
     }
-//    получем адрес сайта для добавления в шаги
-    public String getSiteURL() {
-        return SITE_URL;
-}
-//    получем кнопку куки для добавления в шаги
-    public By getCookieButton() {
-        return cookieButton;
+
+    //  открываем сайт аренды
+    public void openSite() {
+        driver.get(SITE_URL);
+    }
+    //  нажимаем на куки
+    public void closeCookeis() {
+        driver.findElement(cookieButton).click();
     }
 
 //    скролл до кнопки 1-го вопроса

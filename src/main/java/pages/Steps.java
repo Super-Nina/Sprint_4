@@ -17,34 +17,22 @@ public class Steps {
 
     //    шаги для открытия сайта и нажатия на куки
     public void startOfWork(){
-        openSite();
-        closeCookeis();
+        mainPage.openSite();
+        mainPage.closeCookeis();
     }
-    // открываем сайт аренды
-    public void openSite() {
-        driver.get(mainPage.getSiteURL());
-    }
-    // нажимаем на куки
-    public void closeCookeis() {
-        driver.findElement(mainPage.getCookieButton()).click();
-    }
-
 //    шаг для заполнения полей при оформлении заказа
     public void fillTheFieldsOrderPage(String name, String lastname, String adress, String metro, String phone) {
-        driver.findElement(orderPage.getNameField()).sendKeys(name);
-        driver.findElement(orderPage.getLastnameField()).sendKeys(lastname);
-        driver.findElement(orderPage.getAdressField()).sendKeys(adress);
-        driver.findElement(orderPage.getMetroField()).sendKeys(metro);
-        driver.findElement(orderPage.getSelectedMetroField()).click();
-        driver.findElement(orderPage.getPhoneField()).sendKeys(phone);
+        orderPage.setName(name);
+        orderPage.setLastName(lastname);
+        orderPage.setAdress(adress);
+        orderPage.setMetro(metro);
+        orderPage.setPhone(phone);
     }
 //     шаг для заполнения полей с информацией об аренде
     public void fillTheFieldsAboutRentPage(String date, String period, String colour, String comment) {
-        driver.findElement(aboutRentPage.getWhenField()).click();
-        driver.findElement(aboutRentPage.getSelectedDate(date)).click();
-        driver.findElement(aboutRentPage.getPeriodField()).click();
-        driver.findElement(aboutRentPage.getSelectedPeriod(period)).click();
-        driver.findElement(aboutRentPage.getColour(colour));
-        driver.findElement(aboutRentPage.getCommentField());
+        aboutRentPage.setWhenField(date);
+        aboutRentPage.setRentPeriod(period);
+        aboutRentPage.setColour(colour);
+        aboutRentPage.setComment(comment);
     }
 }

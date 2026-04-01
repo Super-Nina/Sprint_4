@@ -11,17 +11,8 @@ public class AboutRentPage {
 //    локаторы
 //    поле Когда привезти самокат
     By whenField = By.cssSelector("input[placeholder= '* Когда привезти самокат']");
-//    для выбора дня в календаре
-    String dayNumber;
-    By date ;
 //    поле Срок аренды
     By rentPeriod = By.xpath(".//div[@class='Dropdown-placeholder'][contains(text(), 'Срок аренды')]");
-//    для выбора периода аренды
-    String periodText;
-    By period ;
-//    для выбора цвета
-    String colourText;
-    By colour ;
 //    поле комментария
     By commentField = By.cssSelector("input[placeholder= 'Комментарий для курьера']");
 //    кнопка заказа под заполненной формой
@@ -36,31 +27,27 @@ public class AboutRentPage {
         this.driver = driver;
     }
 
-//  получаем поле даты для шага
-    public By getWhenField() {
-        return whenField;
+// заполняем поле с датой аренды
+    public void setWhenField (String dayNumber){
+        By date = By.xpath(".//div[@class='react-datepicker__day react-datepicker__day--" + dayNumber +  " react-datepicker__day--weekend react-datepicker__day--outside-month']");
+        driver.findElement(whenField).click();
+        driver.findElement(date).click();
+    }
+//    заполняем поле с периодом аренды
+    public void setRentPeriod (String periodText){
+        driver.findElement(rentPeriod).click();
+        By period = By.xpath(".//div[@class='Dropdown-option'][contains(text(), '" + periodText +"')]");
+        driver.findElement(period).click();
     }
 
-    By getSelectedDate(String dayNumber) {
-        return date = By.xpath(".//div[@class='react-datepicker__day react-datepicker__day--"+ dayNumber + " react-datepicker__day--outside-month']");
-       }
-
-//  получаем поле период для шага
-        public By getPeriodField() {
-            return rentPeriod;
-        }
-//  получаем выбранный период аренды для шага
-    public By getSelectedPeriod(String periodText) {
-        return period = By.xpath(".//div[@class='Dropdown-option'][contains(text(), '" + periodText +"')]");
+//    выбираем цвет
+    public void setColour(String colourText){
+        By colour =By.xpath(".//input[@id='" +colourText+ "'][@class='Checkbox_Input__14A2w']");
+        driver.findElement(colour).click();
     }
-
-//    получаем выбранный цвет для шага
-    public By getColour(String colourText) {
-          return colour =By.xpath(".//input[@id='" +colourText+ "'][@class='Checkbox_Input__14A2w']");
-}
-//  получаем поле комментария для шага
-    public By getCommentField() {
-        return commentField;
+//    добавляем комментарий
+    public void setComment(String comment){
+        driver.findElement(commentField).sendKeys(comment);
     }
 
 //    нажимаем Заказать
