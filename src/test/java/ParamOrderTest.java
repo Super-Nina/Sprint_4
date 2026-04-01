@@ -1,0 +1,64 @@
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
+
+import static org.junit.Assert.assertTrue;
+
+@RunWith(Parameterized.class)
+public class ParamOrderTest extends BaseUITest{
+    String name;
+    String lastname;
+    String adress;
+    String metro;
+    String phone;
+    String date;
+    String period;
+    String colour;
+    String comment;
+
+    public ParamOrderTest(String name, String lastname, String adress, String metro, String phone, String date, String period, String colour, String comment) {
+        this.name = name;
+        this.lastname = lastname;
+        this.adress = adress;
+        this.metro = metro;
+        this.phone = phone;
+        this.date = date;
+        this.period = period;
+        this.colour = colour;
+        this.comment = comment;
+    }
+
+    @Parameterized.Parameters(name = "Набор данных #{0}")
+    public static Object[] getText() {
+        return new Object[][]{
+                {"Нина", "Иванова", "Москва, Кремль", "Печатники", "12223334455", "002", "двое суток", "black", "привозите скорее!"},
+                {"Мальвина", "Чудакова", "Санкт-Петербург", "Зябликово", "98887776655", "003", "сутки", "grey", "Очень жду!"}
+        };
+    }
+ @Test
+ public void makeOrderTest(){
+//  открываем сайт и нажимаем куки, используя шаги
+     steps.startOfWork();
+ // нажимаем верхную кнопку заказа
+     mainPage.clickOrderButtonUp();
+
+//  заполняем поля на OrderPage данными из параметров, использую шаги
+     steps.fillTheFieldsOrderPage(name, lastname, adress,metro,phone);
+
+     orderPage.pushNextButton();
+//  заполняем поля на AboutRentPage данными из параметров, использую шаги
+     steps.fillTheFieldsAboutRentPage(date, period, colour, comment);
+
+//  нажимаем кнопку заказать под формой
+     aboutRentPage.pushOrderButton();
+//  нажимаем Да (подтверждение)
+     aboutRentPage.pushYesButton();
+//ждем, что появится окно с подтверждением оформления заказа
+    String actualText = aboutRentPage.textOrderIsDoneVisible();
+    assertTrue("заказ не оформлен", actualText.contains("Заказ оформлен"));
+    }
+}
+
+
+
+
